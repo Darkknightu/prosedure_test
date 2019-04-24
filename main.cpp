@@ -236,11 +236,35 @@ void testrecord(){
 }
 
 void testmemory(){
-    char* tmp;
-    for (int i = 0; i < 1024; ++i) {
-        tmp=new char[20];
-        delete(tmp);
+    Tracer tracer;
+    int t=16;
+    int length=2;
+    for (int j = 0; j <11; ++j) {
+        tracer.startTime();
+        for (int i = 0; i < t; ++i) {
+            tmp=new char[length];
+            delete(tmp);
+        }
+        length*=2;
+        cout<<"test memory(direct delete)"<<t<<" "<<tracer.getRunTime()<<endl;
     }
+    length=2;
+    char *tmptest[t];
+    for (int j = 0; j <11; ++j) {
+        tracer.startTime();
+        for (int i = 0; i < t; ++i) {
+            tmptest[i]=new char[length];
+            delete(tmp);
+        }
+        for (int i = 0; i < t; ++i) {
+            delete(tmptest[i]);
+        }
+        length*=2;
+        cout<<"test memory(together delete)"<<t<<" "<<tracer.getRunTime()<<endl;
+    }
+
+
+
 }
 
 class test{
@@ -306,6 +330,6 @@ void testsimd(){
 }
 
 int main() {
-    testsimd();
+    testmemory();
     return 0;
 }
