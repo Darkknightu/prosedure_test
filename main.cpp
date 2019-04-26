@@ -9,7 +9,7 @@
 #include <sys/time.h>
 #include <string.h>
 #include <math.h>
-#include <intrin.h>
+#include <x86intrin.h>
 
 #define PMAXSIZE_EPS 1e-10
 
@@ -237,34 +237,35 @@ void testrecord(){
 
 void testmemory(){
     Tracer tracer;
-    int t=16;
+    char* tmp;
+    int t=8*1024*1024;
     int length=2;
-    for (int j = 0; j <11; ++j) {
+    cout<<"times"<<t<<endl;
+    for (int j = 0; j <12; ++j) {
         tracer.startTime();
         for (int i = 0; i < t; ++i) {
             tmp=new char[length];
             delete(tmp);
         }
+
+        cout<<"test memory(direct delete)"<<" block size"<<length<<" "<<tracer.getRunTime()<<endl;
         length*=2;
-        cout<<"test memory(direct delete)"<<t<<" "<<tracer.getRunTime()<<endl;
     }
     length=2;
-    char *tmptest[t];
-    for (int j = 0; j <11; ++j) {
+    char **tmptest=new char*[t];
+    for (int j = 0; j <12; ++j) {
         tracer.startTime();
         for (int i = 0; i < t; ++i) {
             tmptest[i]=new char[length];
-            delete(tmp);
         }
         for (int i = 0; i < t; ++i) {
-            delete(tmptest[i]);
+            delete []tmptest[i];
         }
+        cout<<"test memory(together delete)"<<" block size"<<length<<" "<<tracer.getRunTime()<<endl;
         length*=2;
-        cout<<"test memory(together delete)"<<t<<" "<<tracer.getRunTime()<<endl;
+
     }
-
-
-
+    delete tmptest;
 }
 
 class test{
@@ -305,12 +306,16 @@ void testsimd(){
     size_t nBlockWidth = 8;    // 块宽. AVX寄存器能一次处理8个float.
     size_t cntBlock = cntbuf / nBlockWidth;    // 块数.
     size_t cntRem = cntbuf % nBlockWidth;    // 剩余数量.
-    __m256 yfsSum = _mm256_setzero_ps();    // 求和变量。[AVX] 赋初值0
     __m256 yfsLoad;    // 加载.
     const float* p = pbuf;    // AVX批量处理时所用的指针.
     const float* q;    // 将AVX变量上的多个数值合并时所用指针.
 
+
+    cout<<"float test"<<endl;
     // AVX批量处理.
+    Tracer tracer;
+    __m256 yfsSum = _mm256_setzero_ps();    // 求和变量。[AVX] 赋初值0
+    tracer.startTime();
     for(i=0; i<cntBlock; ++i)
     {
         yfsLoad = _mm256_load_ps(p);    // [AVX] 加载
@@ -320,16 +325,87 @@ void testsimd(){
     // 合并.
     q = (const float*)&yfsSum;
     s = q[0] + q[1] + q[2] + q[3] + q[4] + q[5] + q[6] + q[7];
+    cout<<"time on float avx add"<<tracer.getRunTime() << endl;
 
-    // 处理剩下的.
-    for(i=0; i<cntRem; ++i)
+    tracer.startTime();
+    s=0;
+    for(i=0; i<cntbuf; ++i)
     {
-        s += p[i];
+        s+=pbuf[i];
     }
-    cout<<s<<endl;
+    cout<<"time on float add"<<tracer.getRunTime() << endl;
+
+    __m256 yfsProduct=_mm256_set_ps(1,1,1,1);
+    tracer.startTime();
+    for(i=0; i<cntBlock; ++i)
+    {
+        yfsLoad = _mm256_load_ps(p);    // [AVX] 加载
+        yfsProduct = _mm256_mul_ps(yfsProduct, yfsLoad);    // [AVX] 单精浮点紧缩加法
+        p += nBlockWidth;
+    }
+    // 合并.
+    q = (const float*)&yfsProduct;
+    s = q[0] * q[1] * q[2] * q[3] * q[4] * q[5] * q[6] * q[7];
+    cout<<"time on float avx multiply"<<tracer.getRunTime() << endl;
+
+    tracer.startTime();
+    s=1;
+    for(i=0; i<cntbuf; ++i)
+    {
+        s*=pbuf[i];
+    }
+    cout<<"time on float multiply"<<tracer.getRunTime() << endl;
+
+
+    __m256 yfsSub = _mm256_setzero_ps();    // 求和变量。[AVX] 赋初值0
+    tracer.startTime();
+    for(i=0; i<cntBlock/2; ++i)
+    {
+        yfsLoad = _mm256_load_ps(p);    // [AVX] 加载
+        yfsSub = _mm256_sub_ps(yfsSum, yfsLoad);
+        p += 2*nBlockWidth;
+    }
+    // 合并.
+    q = (const float*)&yfsSum;
+    s = q[0] + q[1] + q[2] + q[3] + q[4] + q[5] + q[6] + q[7];
+    cout<<"time on float avx sub"<<tracer.getRunTime() << endl;
+
+    tracer.startTime();
+    s=0;
+    for(i=0; i<cntbuf/2*nBlockWidth; ++i)
+    {
+        for (int j = 0; j <8 ; ++j) {
+            s+=pbuf[j]-pbuf[j+8];
+        }
+    }
+    cout<<"time on float sub"<<tracer.getRunTime() << endl;
+
+    __m256 yfsProduct=_mm256_set_ps(1,1,1,1);
+    tracer.startTime();
+    for(i=0; i<cntBlock; ++i)
+    {
+        yfsLoad = _mm256_load_ps(p);    // [AVX] 加载
+        yfsProduct = _mm256_div_ps(yfsProduct, yfsLoad);    // [AVX] 单精浮点紧缩加法
+        p += nBlockWidth;
+    }
+    // 合并.
+    q = (const float*)&yfsProduct;
+    s = q[0] * q[1] * q[2] * q[3] * q[4] * q[5] * q[6] * q[7];
+    cout<<"time on float avx div"<<tracer.getRunTime() << endl;
+
+    tracer.startTime();
+    s=1;
+    for(i=0; i<cntbuf/2*nBlockWidth; ++i)
+    {
+        for (int j = 0; j <8 ; ++j) {
+            s+=pbuf[j]/pbuf[j+8];
+        }
+    }
+    cout<<"time on float div"<<tracer.getRunTime() << endl;
+    // 处理剩下的.
 }
 
 int main() {
-    testmemory();
+    testsimd();
     return 0;
 }
