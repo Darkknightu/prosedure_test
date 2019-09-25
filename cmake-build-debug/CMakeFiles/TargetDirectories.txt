@@ -1,0 +1,6 @@
+D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/CMakeFiles/Procedure_Test_ImplictExplicit.dir
+D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/CMakeFiles/Procedure_main.dir
+D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/CMakeFiles/Procedure_testleet.dir
+D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/CMakeFiles/Procedure_SplitGraph.dir
+D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/CMakeFiles/edit_cache.dir

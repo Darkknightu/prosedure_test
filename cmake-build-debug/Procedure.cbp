@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Procedure"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Procedure_Test_ImplictExplicit">
+				<Option output="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Test_ImplictExplicit.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/x86_64-w64-mingw32"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/backward"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include-fixed"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 Procedure_Test_ImplictExplicit"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Procedure_Test_ImplictExplicit/fast">
+				<Option output="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Test_ImplictExplicit.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/x86_64-w64-mingw32"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/backward"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include-fixed"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 Procedure_Test_ImplictExplicit/fast"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Procedure_main">
+				<Option output="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/main.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/x86_64-w64-mingw32"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/backward"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include-fixed"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 Procedure_main"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Procedure_main/fast">
+				<Option output="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/main.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/x86_64-w64-mingw32"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/backward"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include-fixed"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 Procedure_main/fast"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Procedure_testleet">
+				<Option output="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/testleet.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/x86_64-w64-mingw32"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/backward"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include-fixed"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 Procedure_testleet"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Procedure_testleet/fast">
+				<Option output="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/testleet.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/x86_64-w64-mingw32"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/backward"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include-fixed"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 Procedure_testleet/fast"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Procedure_SplitGraph">
+				<Option output="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/SplitGraph.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/x86_64-w64-mingw32"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/backward"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include-fixed"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 Procedure_SplitGraph"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Procedure_SplitGraph/fast">
+				<Option output="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/SplitGraph.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/x86_64-w64-mingw32"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../include/c++/8.2.0/backward"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/include-fixed"/>
+					<Add directory="d:\mingw\bin\../lib/gcc/x86_64-w64-mingw32/8.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 Procedure_SplitGraph/fast"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/MinGW/bin/make.exe -f &quot;D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/Science/avro_c++/Procedure/prosedure_test/Test_ImplictExplicit.cpp">
+			<Option target="Procedure_Test_ImplictExplicit"/>
+		</Unit>
+		<Unit filename="D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/SplitGraph.cpp">
+			<Option target="Procedure_SplitGraph"/>
+		</Unit>
+		<Unit filename="D:/Science/avro_c++/Procedure/prosedure_test/main.cpp">
+			<Option target="Procedure_main"/>
+		</Unit>
+		<Unit filename="D:/Science/avro_c++/Procedure/prosedure_test/testleet.cpp">
+			<Option target="Procedure_testleet"/>
+		</Unit>
+		<Unit filename="D:/Science/avro_c++/Procedure/prosedure_test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

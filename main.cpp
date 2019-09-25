@@ -1,4 +1,3 @@
-#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -9,7 +8,9 @@
 #include <sys/time.h>
 #include <string.h>
 #include <math.h>
-#include <x86intrin.h>
+#include <intrin.h>
+#include <any>
+#include <boost/dynamic_bitset.hpp>
 
 #define PMAXSIZE_EPS 1e-10
 
@@ -39,264 +40,10 @@ public:
 
 using namespace std;
 
-class BlockReader{
-    int rowCount;
-    int lengthOffset;
-    int size;
-
-public:
-    BlockReader():lengthOffset(0){}
-
-    BlockReader(istream is){
-        is.read((char*)&rowCount, sizeof(rowCount));
-        is.read((char*)&size, sizeof(size));
-    }
-
-    void writeTo(ostream os){
-        os.write((char *)&rowCount, sizeof(rowCount));
-        os.write((char *)size, sizeof(size));
-    }
-
-    void read(istream& is){
-        is.read((char*)&this->rowCount, sizeof(this->rowCount));
-        is.read((char*)&this->size, sizeof(this->size));
-    }
-};
-
-class ColumnReader{
-    string metaData;
-    int blockCount;
-    vector<BlockReader> blocks;
-
-public:
-    ColumnReader(){}
-
-    ColumnReader(const ColumnReader &columnreader){
-        metaData=columnreader.metaData;
-        blockCount=columnreader.blockCount;
-        blocks=columnreader.blocks;
-    }
-    ColumnReader(int count):blockCount(count){
-        //metaData=meta;
-    }
-
-    void setBlocks(vector<BlockReader> _blocks){
-        this->blocks.assign(_blocks.begin(),_blocks.begin()+_blocks.size());
-    }
-
-    int getblockCount(){
-        return blockCount;
-    }
-
-    void pushBlock(BlockReader block){
-        blocks.push_back(block);
-    }
-};
-
-class HeadReader{
-    int offset;
-    int rowCount;
-    int blockSize;
-    int columnCount;
-    string metaData;
-    vector<ColumnReader> columns;
-
-public:
-    HeadReader(){}
-
-    int getRowCount(){
-        return rowCount;
-    }
-
-    int getColumnCount(){
-        return columnCount;
-    }
-    string getMetaData(){
-        return metaData;
-    }
-
-    void setColumns(vector<ColumnReader> _columns){
-        this->columns.assign(_columns.begin(),_columns.begin()+_columns.size());
-    }
-
-    void readHeader(istream& is){
-        is.read((char*)&this->offset, sizeof(this->offset));
-        is.read((char*)&this->blockSize, sizeof(this->blockSize));
-        is.read((char*)&this->rowCount, sizeof(this->rowCount));
-        is.read((char*)&this->columnCount, sizeof(this->columnCount));
-        getline(is,metaData);
-        unique_ptr<vector<ColumnReader>> columns( new vector<ColumnReader>(columnCount));
-        for (int i = 0; i <columnCount ; ++i) {
-            int blockCount;
-            is.read((char*)&blockCount, sizeof(blockCount));
-            unique_ptr<vector<BlockReader>> blocks(new vector<BlockReader>(rowCount));
-            for (int j = 0; j < blockCount; ++j) {
-                unique_ptr<BlockReader> block(new BlockReader);
-                block->read(is);
-                blocks->push_back(*block);
-            }
-            unique_ptr<ColumnReader>column (new ColumnReader(blockCount));
-            column->setBlocks(*blocks);
-            columns->push_back(*column);
-        }
-        this->setColumns(*columns);
-    }
-};
-
-void teststream(ostream os){
-    ofstream file_out;
-    file_out.open("./test.dat", ios_base::out|ios_base::binary);
-    int blocksize=8*1024;
-    int rowcount=1;
-    int collumncount=3;
-    string metaData="{\"type\":\"record\",\"name\":\"test\",\"fields\":[{\"name\":\"test_int\",\"type:\"int\"},{\"name\":\"test_int\",\"type:\"int\"},{\"name\":\"test_int\",\"type:\"int\"}]";
-    file_out.write((char*)&blocksize, sizeof(blocksize));
-    file_out.write((char*)&rowcount, sizeof(rowcount));
-    file_out.write((char*)&collumncount, sizeof(collumncount));
-    file_out<<metaData<<endl;
-    for (int i = 0; i <collumncount ; ++i) {
-        int blockcount=1;
-        file_out.write((char*)&blockcount, sizeof(blockcount));
-        for (int j = 0; j <blockcount ; ++j) {
-            int rowcount=1;
-            int size=1024*8;
-            file_out.write((char*)&rowcount, sizeof(rowcount));
-            file_out.write((char*)&size, sizeof(size));
-        }
-
-    }
-    file_out.seekp((10*1024*1024,ios::beg));
-    file_out.close();
-    ifstream file_in;
-    file_in.open("./test.dat", ios_base::in|ios_base::binary);
-    unique_ptr<HeadReader> headreader(new HeadReader());
-    headreader->readHeader(file_in);
-    file_in.close();
-    std::cout << "Hello, World!" << std::endl;
-}
-
-void testpoint(FILE* fp){
-
-}
-
-
-struct ColumnDescriptor{
-    string name;
-    string type;
-    int size;
-};
-
-class RecordReader{
-    char* record;
-public:
-    void setRecord(char* _record){
-        record=_record;
-    }
-
-    char* getRecord(){
-        return record;
-    }
-};
-
-void testrecord(){
-
-    unique_ptr<vector<ColumnDescriptor>> columns( new vector<ColumnDescriptor>());
-    ColumnDescriptor long_column=
-            {
-                    "test_long",
-                    "long",
-                    sizeof(long long)
-            };
-    ColumnDescriptor float_column=
-            {
-                    "test_float",
-                    "float",
-                    sizeof(float)
-            };
-    ColumnDescriptor column;
-    columns->push_back(long_column);
-    columns->push_back(float_column);
-    int length=0;
-    for (int i = 0; i < columns->size(); ++i) {
-        length+=(*columns)[i].size;
-    }
-    unique_ptr<char> tmp(new char[length]);
-//    int offset=0;
-//    *(long long *)tmp=0;
-//    offset+= sizeof(long long);
-//    *(float*)(tmp+offset)=1.28;
-//    RecordReader* tmp_record=new RecordReader;
-//    tmp_record->setRecord(tmp);
-//    char* tmp_r;
-//    tmp_r=tmp_record->getRecord();
-//    long long tmp_l=*(long long*)tmp_r;
-//    float tmp_f=*(float*)(tmp_r+ sizeof(long long));
-
-//    delete(tmp);
-}
-
-void testmemory(){
-    Tracer tracer;
-    char* tmp;
-    int t=8*1024*1024;
-    int length=2;
-    cout<<"times"<<t<<endl;
-    for (int j = 0; j <12; ++j) {
-        tracer.startTime();
-        for (int i = 0; i < t; ++i) {
-            tmp=new char[length];
-            delete(tmp);
-        }
-
-        cout<<"test memory(direct delete)"<<" block size"<<length<<" "<<tracer.getRunTime()<<endl;
-        length*=2;
-    }
-    length=2;
-    char **tmptest=new char*[t];
-    for (int j = 0; j <12; ++j) {
-        tracer.startTime();
-        for (int i = 0; i < t; ++i) {
-            tmptest[i]=new char[length];
-        }
-        for (int i = 0; i < t; ++i) {
-            delete []tmptest[i];
-        }
-        cout<<"test memory(together delete)"<<" block size"<<length<<" "<<tracer.getRunTime()<<endl;
-        length*=2;
-
-    }
-    delete tmptest;
-}
-
-class test{
-public:
-    float trand(){
-        return rand();
-    }
-};
-
-void testptr(){
-    float tmp;
-    test* trand=new test();
-    Tracer tracer;
-    tracer.startTime();
-    for (int i = 0; i < 1024; ++i) {
-        tmp=trand->trand();
-    }
-    cout << "Ingestion: " << tracer.getRunTime() << endl;
-    unique_ptr<test> tprand(new test());
-    for (int i = 0; i < 1024; ++i) {
-        tmp=tprand->trand();
-    }
-    cout << "Ingestion: " << tracer.getRunTime() << endl;
-    delete(trand);
-}
-
-
 
 void testsimd(){
     int cntbuf=4096;
-    float pbuf[cntbuf];
+    float pbuf[4096];
     srand( (unsigned)time( NULL ) );
     for (int j = 0; j <cntbuf ; ++j) {
         pbuf[j] = (float)(rand() & 0x3f);
@@ -335,7 +82,7 @@ void testsimd(){
     }
     cout<<"time on float add"<<tracer.getRunTime() << endl;
 
-    __m256 yfsProduct=_mm256_set_ps(1,1,1,1);
+    __m256 yfsProduct=_mm256_set_ps(1,1,1,1,1,1,1,1);
     tracer.startTime();
     for(i=0; i<cntBlock; ++i)
     {
@@ -380,7 +127,7 @@ void testsimd(){
     }
     cout<<"time on float sub"<<tracer.getRunTime() << endl;
 
-    __m256 yfsProduct=_mm256_set_ps(1,1,1,1);
+    yfsProduct=_mm256_set_ps(1,1,1,1,1,1,1,1);
     tracer.startTime();
     for(i=0; i<cntBlock; ++i)
     {
@@ -402,10 +149,148 @@ void testsimd(){
         }
     }
     cout<<"time on float div"<<tracer.getRunTime() << endl;
+
     // 处理剩下的.
 }
 
+void testfilewriter(FILE** fl){
+    char* test="test";
+    for (int i = 0; i < 1024; ++i) {
+        fwrite(test, sizeof(char),strlen(test),fl[0]);
+    }
+}
+
+void fileOutput(int num,char* name){
+    fstream s(name,s.binary | s.trunc | s.in | s.out);
+    for (int i = 0; i < num ; ++i) {
+        s.write((char *)&i, sizeof(i)); ;
+    }
+
+}
+
+void streamInputTest(int num,char* name){
+    ifstream s(name,s.binary | s.in );
+    int j;
+    time_t strart=time(nullptr);
+    for (int i = 0; i < num; ++i) {
+        s.read((char *)&j, sizeof(j));;
+    }
+    time_t end=time(nullptr);
+    cout<<end-strart<<"seconds for input as stream";
+}
+
+void fileInputTest(int num, char* s){
+    FILE* file;
+    file=fopen(s,"rb+");
+    int j=1;
+    int* pj=&j;
+    time_t strart=time(nullptr);
+    for (int i = 0; i < num; ++i) {
+        fread(pj, sizeof(int),1,file);
+    }
+    time_t end=time(nullptr);
+    cout<<end-strart<<"seconds for input as file";
+}
+
+void blockInputTest(int num, char* s){
+    FILE* file;
+    file=fopen(s,"rb+");
+    int j=1;
+    int* pj=&j;
+    int* block=new int[1024];
+    time_t start=time(nullptr);
+    for (int i = 0; i < num/1024; ++i) {
+        fread(block, sizeof(int),1024,file);
+        for (int k = 0; k <1024 ; ++k) {
+            j=block[k];
+        }
+    }
+    time_t end=time(nullptr);
+    cout<<end-start<<"seconds for input as file";
+}
+
+
+void anyInputTest(int num, char* s){
+    FILE* file;
+    file=fopen(s,"rb+");
+    any j=1;
+    int* block=new int[1024];
+    time_t start=time(nullptr);
+    for (int i = 0; i < num/1024; ++i) {
+        fread(block, sizeof(int),1024,file);
+        for (int k = 0; k <1024 ; ++k) {
+            j=block[k];
+        }
+    }
+    time_t end=time(nullptr);
+    cout<<end-start<<"seconds for input as any";
+}
+
+class  anyTest{
+public:
+    any value;
+    anyTest(int i):value(i){
+    }
+    any& getre(){
+        return value;
+    }
+    any getva(){
+        return value;
+    }
+
+};
+
+void classInputTest(int num, char* s){
+    FILE* file;
+    file=fopen(s,"rb+");
+    anyTest j(1);
+    int* block=new int[1024];
+    time_t start=time(nullptr);
+    for (int i = 0; i < num/1024; ++i) {
+        fread(block, sizeof(int),1024,file);
+        for (int k = 0; k <1024 ; ++k) {
+            j.getre()=block[k];
+//            j.getva()=block[k];
+        }
+    }
+    time_t end=time(nullptr);
+    cout<<end-start<<"seconds for input as class";
+}
+
+class Test{
+private:
+    int test_i;
+
+    char* test_c="test";
+public:
+    Test(int i):test_i(i){}
+
+    int* getIntP(){
+        return &test_i;
+    }
+
+    int getInt(){
+        return test_i;
+    }
+
+};
+
+void testReference(){
+    Test t(1024);
+    int* pi=t.getIntP();
+    cout<<*pi<<endl;
+    *pi=1048;
+    cout<<*pi<<endl;
+    cout<<t.getInt()<<endl;
+}
+
 int main() {
-    testsimd();
-    return 0;
+//    char* filename="./file0.dat";
+//    FILE** fl=(FILE**)malloc(sizeof(FILE*));
+//    fl[0]=fopen(filename,"wb+");
+//    testfilewriter(fl);
+//testReference();
+    //fileOutput(1024,"./file.dat");
+    blockInputTest(1024,"./file.dat");
+return 0;
 }

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Science/avro_c++/Procedure/prosedure_test/Test_ImplictExplicit.cpp
+iostream
+-
+vector
+-
+map
+-
+
+D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/SplitGraph.cpp
+fstream
+-
+vector
+-
+iostream
+D:/Science/avro_c++/Procedure/prosedure_test/cmake-build-debug/iostream
+

@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Science/avro_c++/Procedure/prosedure_test/testleet.cpp
+iostream
+-
+sstream
+-
+cmath
+-
+algorithm
+-
+cstring
+-
+string
+D:/Science/avro_c++/Procedure/prosedure_test/string
+vector
+D:/Science/avro_c++/Procedure/prosedure_test/vector
+map
+D:/Science/avro_c++/Procedure/prosedure_test/map
+set
+D:/Science/avro_c++/Procedure/prosedure_test/set
+
